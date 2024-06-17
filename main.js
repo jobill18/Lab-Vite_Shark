@@ -16,8 +16,23 @@ document.querySelector("#app").innerHTML = `
 const initSharkwords = () => {
   let numWrong = 0;
   const word = getRandomWord();
-  setSharkImage();
   // for debugging:
+  const handleGuess = (guessEvent, letter) => {
+    const button = guessEvent.target;
+    button.setAttribute("disabled", true);
+    if (isLetterInWord(letter)) {
+      revealLetterInWord(letter);
+    } else {
+      numWrong += 1;
+      setSharkImage(sharkImgEl, numWrong);
+    }
+    const isWordComplete = Array.from(
+      document.querySelectorAll(".letter-box")
+    ).every((el) => el.innerText !== "");
+    document.querySelectorAll("button").forEach((btn) => {
+      btn.setAttribute("disabled", true);
+    });
+  };
   console.log(`[INFO] Correct word is: ${word}`);
   console.log(isLetterInWord("1"));
   console.log(isLetterInWord("word[0]"));

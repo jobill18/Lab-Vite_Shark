@@ -12,7 +12,11 @@ function isLetterInWord(letter) {
 
 function revealLetterInWord(letter) {
   const letterBoxes = document.querySelectorAll(".letter-box");
-  for (let i = 0; i < word.length; i++) {}
+  word.split("").forEach((wordLetter, idx) => {
+    if (wordLetter === letter) {
+      letterBoxes[idx].innerHTML = letter;
+    }
+  });
 }
 
 export { setupWord, isLetterInWord, revealLetterInWord };
